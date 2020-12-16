@@ -10,16 +10,20 @@
  * @license    https://www.coreshop.org/license     GNU General Public License version 3 (GPLv3)
  */
 
-declare(strict_types=1);
+namespace CoreShop\Component\Pimcore\Mail;
 
-namespace CoreShop\Component\Pimcore\BCLayer;
+use Pimcore\Model\Document\Email;
 
-if (interface_exists(\Pimcore\Model\DataObject\ClassDefinition\Data\QueryResourcePersistenceAwareInterface::class)) {
-    interface QueryResourcePersistenceAwareInterface extends \Pimcore\Model\DataObject\ClassDefinition\Data\QueryResourcePersistenceAwareInterface
-    {
-    }
-} else {
-    interface QueryResourcePersistenceAwareInterface
-    {
-    }
+interface MailProcessorInterface
+{
+    /**
+     * @param Email $emailDocument
+     * @param null  $subject
+     * @param mixed $recipients
+     * @param array $attachments
+     * @param array $params
+     *
+     * @return bool
+     */
+    public function sendMail(Email $emailDocument, $subject = null, $recipients = null, array $attachments = [], array $params = []);
 }
